@@ -1,0 +1,119 @@
+🔐 SSH & EC2 Basics
+
+Login to EC2 instance:
+Shellssh ec2-user@<IP-address>Show more lines
+
+User credentials:
+
+Username: ec2-user
+Password (example): DevOps321
+
+
+
+
+🧑‍💻 Backend Technologies Overview
+
+Common backend languages:
+Java, .NET, Python, Node.js, Go, Ruby, PHP
+
+
+📦 Build Tools & Files by Language
+Node.js
+
+Source files: *.js
+Build file: package.json – contains metadata (name, version, dependencies)
+Build tool: npm (Node Package Manager)
+Install dependencies:
+Shellnpm installShow more lines
+
+Run app:
+Shell/bin/node /app/index.jsShow more lines
+
+
+Java
+
+Source files: *.java
+Build file: pom.xml
+Build tool: Maven
+
+Python
+
+Source files: *.py
+Build file: requirements.txt
+Build tool: pip
+
+
+📁 Application Deployment Structure
+
+Application folder: /app
+Download backend zip:
+Shellcurl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zipShow more lines
+
+
+
+🔧 Systemd Service Setup
+
+Service file location: /etc/systemd/system
+File extension: .service
+
+Example: Backend Service
+INI[Unit]Description = Backend Service[Service]User=expenseEnvironment=DB_HOST="<MYSQL-SERVER-IPADDRESS>"ExecStart=/bin/node /app/index.jsSyslogIdentifier=backend[Install]WantedBy=multi-user.targetShow more lines
+
+🌐 Nginx Setup
+
+Install:
+Shelldnf install nginx -yShow more lines
+
+Config directory: /etc/nginx
+Website files: /usr/share/nginx/html
+Logs: /var/log/nginx
+Default page: /usr/share/nginx/html/index.html
+
+
+🧠 Concepts
+Library
+
+A reusable piece of code that can be consumed by many applications without purchasing.
+
+Proxy Types
+
+Forward Proxy: Client-side proxy, hides client identity.
+Reverse Proxy: Server-side proxy, hides server identity (e.g., Nginx).
+
+DNS
+
+Domain Name System – resolves domain names to IP addresses.
+
+
+🐬 MySQL Setup for Expense App
+Create Database & Table
+SQLCREATE DATABASE IF NOT EXISTS transactions;USE transactions;CREATE TABLE IF NOT EXISTS transactions (    id INT AUTO_INCREMENT PRIMARY KEY,    amount INT,    description VARCHAR(255));Show more lines
+Create User & Grant Permissions
+SQLCREATE USER IF NOT EXISTS 'expense'@'%' IDENTIFIED BY 'ExpenseApp@1';GRANT ALL ON transactions.* TO 'expense'@'%';FLUSH PRIVILEGES;Show more lines
+Import Schema
+Shellmysql -h <MYSQL-IP> -uroot -pExpenseApp@1 < /app/schema/backend.sqlShow more lines
+
+🧪 Troubleshooting
+Common Logs
+
+System logs: /var/log/messages
+Nginx logs: /var/log/nginx
+
+Example Error
+
+Access denied for MySQL user:
+Error: Access denied for user 'expense'@'ip-172-31-46-138.ec2.internal'
+
+
+
+
+🧰 Networking Tools
+
+Check connectivity:
+Shellping <IP>telnet <IP> 3306Show more lines
+
+
+IP Notes
+
+Private IP: Static within the VPC
+Public IP: May change on instance restart

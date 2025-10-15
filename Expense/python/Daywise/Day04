@@ -1,0 +1,48 @@
+Function:
+=========
+A block of code - function that performs a specific task
+using 'def' keyword functions can be defined, and can take inputs called arguments
+They are a way to encapsulate data.
+
+def greet(name)
+    return f"Hello, {name}!"
+
+message = greet("Alice")
+print(message)
+
+Module:
+=======
+A module is a python script containing the pythin code. 
+It can define define functions,classes and variables that can be used in scripts.
+Modules help organize and modularize your code, making it more maintainable.
+# my_module.py
+EX: def square(x):
+        return x ** 2
+
+import my_module
+result = my_module.square(5)
+print(result)
+print(my_module.pi)
+
+Packages:
+============
+A package is a collection of modules organized in directories.Packages help you organize related modules into a hierarchy.
+They contain a special file named __init__.py, which indicates that the directory should be treated as a package.
+my_package/
+__init__.py
+module1.py
+module2.py
+You can use modules from this packages as follows:
+from my_package import module1
+result = module1.function_from_module1()
+In this example, my_package is a Python package containing modules module1 and module2.
+2. How to Import a Package
+Importing a package or module in Python is done using the import statement. You can import the entire package, specific modules, or individual functions/variables from a module
+Ex:
+import math
+# Use functions/variables from the module
+result = math.sqrt(16)
+print(result)
+from math import pi
+print(pi)
+In this example, we import the math module and then use functions and variables from it. You can also import specific elements from modules using the from module import element syntax.

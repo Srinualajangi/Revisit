@@ -1,0 +1,96 @@
+Desktop Applications
+Disadvantages:
+
+
+Requires installation on each system
+Consumes local storage
+Needs manual upgrades
+Problem fixing is manual
+Risk of system crash → application unavailable
+Consumes system resources
+
+
+Web-Based Applications
+Advantages:
+
+
+No installation required
+No manual upgrades (handled on server)
+No compatibility issues (browser-based)
+No local storage dependency
+Accessible from anywhere
+
+
+Web Applications → 3-Tier Architecture
+
+
+Web Tier: Handles user interface and requests
+App/API Tier: Processes business logic
+Data Tier: Stores and retrieves data
+
+Analogy: Restaurant Model
+
+Roadside Cart: One person does everything (cooking, billing, serving)
+Small Hotel: Owner + Cook (basic division of work)
+Restaurant: Specialized roles
+
+Waiter → Web Server (handles requests, queue management)
+Chef → App Server (processes orders/business logic)
+Raw Items → Database (stores data)
+
+
+
+Data Representation
+
+Database: Tables and columns (e.g., user_id, user_name, password)
+App Server: Executes SQL queries for CRUD operations
+Example:
+SELECT * FROM user WHERE user_name='sivakumar' AND password='siva123';
+Web Server: Converts data into HTML/JSON for user display
+Example JSON:
+{ "user": "sivakumar", "dob": "01-01-01", "location": "bangalore" }
+
+
+Technology Stack
+
+
+Web Tier (Frontend): HTML, CSS, JavaScript, ReactJS, Angular
+App/API Tier (Backend): Java, Python, NodeJS, .NET, Go
+Data Tier: MySQL, PostgreSQL, Oracle, MongoDB, Redis
+
+Static vs Dynamic
+
+Static Content: HTML/CSS → Served by Nginx, Apache
+Dynamic Content: Backend apps → JBoss, WebSphere, WebLogic, Tomcat
+
+
+DevOps Practice Setup
+
+
+Use Community AMI → RedHat 9 on EC2
+Login with:
+Username: ec2-user
+Password: DevOps321 (D and O are caps)
+
+
+Database Server Setup
+
+
+Install MySQL:
+sudo dnf install mysql-server
+Start service:
+sudo systemctl start mysqld
+sudo systemctl status mysqld
+Check:
+netstat -lntp      # Check port
+ps -ef | grep mysql # Check process
+Default user: root
+Client connection:
+mysql -u root -p
+mysql -h  -u root -p
+Basic commands:
+SHOW DATABASES;
+USE ;
+SHOW TABLES;
+SELECT * FROM ;
+
