@@ -1,0 +1,82 @@
+Introduction to Operators in Python
+================================
+Operators are used in python to perform operations on variables and values.
+Here are the main types of operators in Python:
+
+Arithmetic Operators: 
+These operators are used for performing basic mathematical operations such as addition, subtraction, multiplication, division, and more.
+
+Assignment Operators:
+ Assignment operators are used to assign values to variables. They include the equal sign (=) and various compound assignment operators. EX: =, +=(Adds the right operand to the left operand and assigns the result to the left operand) -=(Subtracts the right operand from the left operand and assigns the result to the left operand) *= (Multiplies the left operand by the right operand and assigns the result to the left operand.), /=(Divides the left operand by the right operand and assigns the result to the left operand.), //= (Performs floor division on the left operand and assigns the result to the left operand.), %= (Calculates the modulus of the left operand and assigns the result to the left operand.), 
+
+Relational Operators: Relational operators are used to compare values and determine the relationship between them. They return a Boolean result (True or False).
+
+Relational operators in Python are used to compare two values and determine the relationship between them. These operators return a Boolean result, which is either True or False.
+
+List of Relational Operators
+Equal to (==): Checks if two values are equal.
+
+Not equal to (!=): Checks if two values are not equal.
+
+Greater than (>): Checks if the left operand is greater than the right operand.
+
+Less than (<): Checks if the left operand is less than the right operand.
+
+Greater than or equal to (>=): Checks if the left operand is greater than or equal to the right operand.
+
+Less than or equal to (<=): Checks if the left operand is less than or equal to the right operand.
+
+
+Logical Operators:
+ Logical operators are used to combine and manipulate Boolean values. They include "and," "or," and "not."
+
+Logical operators in Python are used to manipulate and combine Boolean values. These operators allow you to perform logical operations such as AND, OR, and NOT.
+
+List of Logical Operators
+AND (and): Returns True if both operands are True.
+OR (or): Returns True if at least one of the operands is True.
+NOT (not): Returns the opposite Boolean value of the operand.
+
+
+
+Identity Operators:
+ Identity operators are used to check if two variables point to the same object in memory. The identity operators in Python are "is" and "is not."
+
+Identity operators in Python are used to compare the memory locations of two objects to determine if they are the same object or not. The two identity operators are "is" and "is not."
+
+List of Identity Operators
+is: Returns True if both operands refer to the same object.
+is not: Returns True if both operands refer to different objects.
+
+Membership Operators:
+ Membership operators are used to check if a value is present in a sequence or collection, such as a list, tuple, or string. The membership operators in Python are "in" and "not in."
+
+Membership operators in Python are used to check whether a value is present in a sequence or collection, such as a list, tuple, or string. The membership operators are "in" and "not in."
+
+
+List of Membership Operators
+in: Returns True if the left operand is found in the sequence on the right.
+not in: Returns True if the left operand is not found in the sequence on the right.
+
+
+Bitwise Operators:
+ Bitwise operators are used to perform operations on individual bits of binary numbers. They include bitwise AND, OR, XOR, and more.
+
+List of Bitwise Operators
+Bitwise AND (&): Performs a bitwise AND operation on the binary representations of the operands.
+Bitwise OR (|): Performs a bitwise OR operation.
+Bitwise XOR (^): Performs a bitwise XOR operation.
+Bitwise NOT (~): Flips the bits of the operand, changing 0 to 1 and 1 to 0.
+Left Shift (<<): Shifts the bits to the left by a specified number of positions.
+Right Shift (>>): Shifts the bits to the right.
+
+
+Precedence of Operations: 
+Operators in Python have different levels of precedence, which determine the order in which operations are performed in an expression.
+
+Precedence of operations in Python defines the order in which different types of operators are evaluated in an expression. Operators with higher precedence are evaluated first.
+
+Examples
+Arithmetic Precedence
+result = 5 + 3 * 2
+# Multiplication has higher precedence, so result is 11, not 16

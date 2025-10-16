@@ -1,0 +1,107 @@
+Linux & Shell Basics
+
+Variables: Store values for reuse in scripts.
+Conditions: Use if, elif, else for decision-making.
+Loops: for, while, until for iteration.
+Functions: Group reusable code blocks.
+Data Types: Strings, integers, arrays.
+
+
+Shell Concepts
+
+Colors: Used in terminal output for readability.
+Redirections:
+
+> overwrite
+>> append
+2> redirect errors
+
+
+Exit Status: 0 = success, non-zero = failure.
+
+
+Algorithm
+
+Step-by-step procedure to solve a problem.
+
+
+Idempotency
+
+Running a script multiple times should produce the same result.
+
+
+Deployment / New Version Release
+
+Announce downtime: “Maintenance on 29-AUG 02:00AM–06:00AM”
+Stop the server.
+Backup previous version.
+Remove existing version.
+Download new version.
+Start the server.
+
+
+HTTP Methods
+
+GET: Read data.
+POST: Create data (usually JSON).
+PUT: Update existing data.
+DELETE: Remove data.
+OPTIONS: Check supported methods.
+
+
+HTTP Status Codes
+
+2xx Success:
+
+200 OK
+201 Created
+204 No Content
+
+
+3xx Redirection
+4xx Client Errors:
+
+who is the client for backend --> frontend. 404--> Not found
+400 --> 
+
+400 Bad Request
+401 Unauthorized
+402 Payment Required
+403 Forbidden
+404 Not Found
+405 Method Not Allowed
+
+
+5xx Server Errors:
+
+500 Internal Server Error
+502 Bad Gateway
+503 Service Unavailable
+504 Gateway Timeout
+
+
+
+
+Architecture
+
+Frontend → Backend → Database
+Logs: /var/log/nginx, /var/log/messages
+
+
+Trap Function
+
+Handle signals and errors using trap.
+
+
+Deleting Old Logs (Shell Script)
+
+Delete .log files older than 14 days:
+
+Identify directory.
+Check if directory exists.
+Find files.
+Delete them.
+
+
+Use find /path -name "*.log" -mtime +14 -delete.
+
