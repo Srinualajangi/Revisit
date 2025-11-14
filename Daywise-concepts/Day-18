@@ -1,0 +1,95 @@
+✅ Core Ansible Concepts
+
+
+Variables
+
+Used to store dynamic values for tasks and playbooks.
+Example:
+YAML
+course:  name: "DevOps with AWS"  duration: 120  trainer: "sivakumar reddy"Show more lines
+
+
+
+
+Conditions (when)
+
+Apply tasks only if certain conditions are met.
+Example:
+YAMLwhen: ansible_os_family == "RedHat"Show more lines
+
+
+
+
+Loops
+
+Repeat tasks for multiple items.
+Example:
+YAML
+loop:  - item1  - item2
+Show more lines
+
+
+
+
+Data Types
+
+YAML supports scalars, lists, and dictionaries.
+Example:
+YAML- , [][  { "key": "name", "value": "DevOps with AWS" },  { "key": "duration", "value": 120 }]Show more lines
+
+
+
+✅ Functions vs Filters
+
+Ansible doesn’t allow custom functions directly like Python.
+To extend functionality, you write Python plugins or use filters.
+Filters = used for data manipulation in templates and tasks.
+
+Example:
+YAML{{ variable | upper }}Show more lines
+
+
+
+
+
+✅ Command vs Shell Modules
+
+command:
+
+Executes simple commands without shell environment.
+More secure.
+
+
+shell:
+
+Executes complex commands (pipes, redirection).
+Provides shell environment.
+
+
+Best Practice: Use command if possible.
+
+
+✅ Ansible Beyond Configuration Management
+
+Can connect to any system if a module exists.
+Integrates with AWS using aws modules.
+Requires AWS CLI setup:
+Shellaws configureShow more lines
+
+
+
+✅ Expense Project Example
+
+3 servers: MySQL, Backend, Frontend.
+Private IPs for internal communication.
+Public IP for domain access.
+Demonstrates multi-tier architecture automation.
+
+
+🔑 Key Takeaways
+
+Variables, loops, and conditions are fundamental.
+Filters = data manipulation; custom logic needs Python.
+Prefer command over shell for security.
+Ansible is versatile: CM + Cloud automation.
+YAML structure matters for readability and correctness.

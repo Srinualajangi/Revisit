@@ -1,0 +1,8 @@
+- name: variables from files
+  hosts: web
+  vars_files:
+  - vars.yml
+  tasks:
+  - name: print my details
+    ansible.builtin.debug:
+      msg: "Hi, Iam {{NAME}}, my role is {{ROLE}}, iam expert at {{CLOUD}}"

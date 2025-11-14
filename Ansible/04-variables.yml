@@ -1,0 +1,10 @@
+- name: variables to print
+  hosts: web
+  vars:
+    NAME: "Srinu"
+    ROLE: "Devops Engineer"
+    CLOUD: "AWS"
+  tasks:
+  - name: print the information
+    ansible.builtin.debug:
+      msg: "Hi, Iam {{NAME}}, my role is {{ROLE}}, iam expert at {{CLOUD}} "

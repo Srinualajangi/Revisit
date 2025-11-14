@@ -1,5 +1,4 @@
 #!/bin/bash
-#Murali Thangavel
 
 White="\033[01;32m"
 Blue="\033[01;35m"

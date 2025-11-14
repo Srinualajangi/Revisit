@@ -1,0 +1,16 @@
+- name: variables from prompt
+  hosts: web
+  vars_prompt:
+  - name: NAME
+    prompt: Please enter your NAME
+    private: false # not confidential
+  - name: ROLE
+    prompt: Please enter the ROLE name
+    private: false # not confidential
+  - name: CLOUD
+    prompt: Please enter the CLOUD tech
+    private: false # not confidential
+  tasks:
+  - name: print the course information
+    ansible.builtin.debug:
+      msg: "Hi, Iam {{NAME}}, my role is {{ROLE}}, iam expert at {{CLOUD}}"
