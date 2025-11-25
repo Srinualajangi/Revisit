@@ -104,7 +104,7 @@ pipeline {
 
     stage('Docker build & push to ECR') {
       steps {
-        withAWS(region: "${params.AWS_REGION}", credentials: 'aws-creds') {
+        withAWS(region: "${params.AWS_REGION}", credentials: 'aws-cred') {
           script {
             // Ensure Docker is available and the daemon is running
             sh 'docker --version'
