@@ -94,8 +94,9 @@ pipeline {
 
     stage('Quality Gate') {
       steps {
-        echo "Quality gate will check code coverage herre." {
-          // abortPipeline true = fail fast on bad quality gate
+        echo "Quality gate will check code coverage here."
+        // timeout(time: 5, unit: 'MINUTES') {
+          // Uncomment the line below to enable quality gate checks
           // waitForQualityGate abortPipeline: false
         }
       }
