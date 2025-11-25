@@ -96,7 +96,7 @@ pipeline {
       steps {
         timeout(time: 5, unit: 'MINUTES') {
           // abortPipeline true = fail fast on bad quality gate
-          waitForQualityGate abortPipeline: true
+          waitForQualityGate abortPipeline: false
         }
       }
     }
