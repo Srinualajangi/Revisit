@@ -113,14 +113,17 @@ pipeline {
                 | docker login --username AWS --password-stdin ${params.AWS_ACCOUNT_ID}.dkr.ecr.${params.AWS_REGION}.amazonaws.com
             """
 
+            // Convert repository name to lowercase to meet AWS ECR constraints
+            def repoName = "${params.PROJECT}/${params.ENVIRONMENT}/${params.COMPONENT}".toLowerCase()
+
             // Create ECR repository if it does not exist (idempotent)
             sh """
-              aws ecr describe-repositories --repository-names ${params.PROJECT}/${params.ENVIRONMENT}/${params.COMPONENT} \
-              || aws ecr create-repository --repository-name ${params.PROJECT}/${params.ENVIRONMENT}/${params.COMPONENT}
+              aws ecr describe-repositories --repository-names ${repoName} \
+              || aws ecr create-repository --repository-name ${repoName}
             """
 
             // Build the image from the root (adjust Dockerfile path if needed)
-            def repo = "${params.AWS_ACCOUNT_ID}.dkr.ecr.${params.AWS_REGION}.amazonaws.com/${params.PROJECT}/${params.ENVIRONMENT}/${params.COMPONENT}"
+            def repo = "${params.AWS_ACCOUNT_ID}.dkr.ecr.${params.AWS_REGION}.amazonaws.com/${repoName}"
             sh "docker build -t ${repo}:${appVersion} ."
             sh "docker tag ${repo}:${appVersion} ${repo}:latest"
             sh "docker push ${repo}:${appVersion}"
