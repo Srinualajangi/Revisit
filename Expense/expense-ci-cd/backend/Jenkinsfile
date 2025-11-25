@@ -126,6 +126,7 @@ pipeline {
             def repo = "${params.AWS_ACCOUNT_ID}.dkr.ecr.${params.AWS_REGION}.amazonaws.com/${repoName}"
             sh 'ls -la'
             sh 'cd Expense/expense-ci-cd/backend/'
+            sh 'ls -la'
             sh "docker build -t ${repo}:${appVersion} ."
             sh "docker tag ${repo}:${appVersion} ${repo}:latest"
             sh "docker push ${repo}:${appVersion}"
