@@ -127,7 +127,7 @@ pipeline {
             sh 'ls -la'
             sh 'cd Expense/expense-ci-cd/backend/'
             sh 'ls -la'
-            sh "docker build -t ${repo}:${appVersion} ."
+            sh "cd Expense/expense-ci-cd/backend; docker build -t ${repo}:${appVersion} ."
             sh "docker tag ${repo}:${appVersion} ${repo}:latest"
             sh "docker push ${repo}:${appVersion}"
             sh "docker push ${repo}:latest"
