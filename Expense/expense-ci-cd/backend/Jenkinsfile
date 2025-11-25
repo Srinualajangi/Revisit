@@ -125,6 +125,7 @@ pipeline {
             // Build the image from the root (adjust Dockerfile path if needed)
             def repo = "${params.AWS_ACCOUNT_ID}.dkr.ecr.${params.AWS_REGION}.amazonaws.com/${repoName}"
             sh 'ls -la'
+            sh 'cd Expense/expense-ci-cd/backend/'
             sh "docker build -t ${repo}:${appVersion} ."
             sh "docker tag ${repo}:${appVersion} ${repo}:latest"
             sh "docker push ${repo}:${appVersion}"
