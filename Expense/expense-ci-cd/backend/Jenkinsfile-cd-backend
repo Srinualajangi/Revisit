@@ -131,8 +131,6 @@ pipeline {
             sh "docker tag ${repo}:${appVersion} ${repo}:latest"
             sh "docker push ${repo}:${appVersion}"
             sh "docker push ${repo}:latest"
-            sh "cd Expense/expense-ci-cd/mysql; docker build -t ${repo}:${appVersion} ."
-
           }
         }
       }

@@ -5,19 +5,14 @@ pipeline {
   parameters {
     string(name: 'GIT_URL',           defaultValue: 'https://github.com/Srinualajangi/Revisit.git', description: 'Repository URL')
     string(name: 'GIT_BRANCH',        defaultValue: 'main',                                       description: 'Branch to build')
-    string(name: 'APP_DIR',           defaultValue: 'Expense/expense-ci-cd/backend',              description: 'Subdirectory where package.json lives (use "." if root)')
+    string(name: 'APP_DIR',           defaultValue: 'Expense/expense-ci-cd/mysql',              description: 'Subdirectory where package.json lives (use "." if root)')
     string(name: 'AWS_ACCOUNT_ID',    defaultValue: '671774454141',                               description: 'AWS Account ID for ECR')
     string(name: 'AWS_REGION',        defaultValue: 'us-east-1',                                  description: 'AWS Region')
-    string(name: 'PROJECT',           defaultValue: 'Expense-backend',                            description: 'Project name used in ECR repo path')
+    string(name: 'PROJECT',           defaultValue: 'Expense-mysql',                            description: 'Project name used in ECR repo path')
     string(name: 'ENVIRONMENT',       defaultValue: 'dev',                                        description: 'Environment (dev/stage/prod)')
-    string(name: 'COMPONENT',         defaultValue: 'backend',                                    description: 'Component name in ECR repo path')
+    string(name: 'COMPONENT',         defaultValue: 'mysql',                                    description: 'Component name in ECR repo path')
     string(name: 'SONAR_INSTANCE',    defaultValue: 'Sonarqube',                                  description: 'SonarQube server configuration name in Jenkins')
     booleanParam(name: 'deploy',      defaultValue: false,                                        description: 'Trigger downstream deployment?')
-  }
-
-  environment {
-    packageVersion = ''
-    appVersion     = '' // will be set from package.json version
   }
 
   options {
@@ -34,73 +29,6 @@ pipeline {
       }
     }
 
-    stage('Get version') {
-      steps {
-        dir("${params.APP_DIR}") {
-          script {
-            if (!fileExists('package.json')) {
-              error "package.json not found in '${params.APP_DIR}'. Fix APP_DIR or ensure the file exists."
-            }
-
-            def packageJson = readJSON(file: 'package.json')
-            if (!packageJson.version) {
-              error "No 'version' field found in package.json at '${params.APP_DIR}/package.json'."
-            }
-
-            packageVersion = packageJson.version
-            appVersion = packageVersion
-            echo "Detected version from package.json: ${appVersion}"
-          }
-        }
-      }
-    }
-
-    stage('Install dependencies') {
-      steps {
-        dir("${params.APP_DIR}") {
-          // Prefer npm ci when lockfile exists for reproducibility
-          script {
-            if (fileExists('package-lock.json')) {
-              sh 'npm ci'
-            } else {
-              sh 'npm install'
-            }
-          }
-        }
-      }
-    }
-
-    stage('Unit test') {
-      steps {
-        dir("${params.APP_DIR}") {
-          // Replace echo with your actual test command (e.g., npm test)
-          echo "unit testing is done here"
-        }
-      }
-    }
-
-    stage('Sonar Scan') {
-      environment {
-        SCANNER_HOME = tool "${params.SONAR_INSTANCE}"
-      }
-      steps {
-        dir("${params.APP_DIR}") {
-          withSonarQubeEnv("${params.SONAR_INSTANCE}") {
-            sh "${SCANNER_HOME}/bin/sonar-scanner"
-          }
-        }
-      }
-    }
-
-    stage('Quality Gate') {
-      steps {
-        echo "Quality gate will check code coverage here."
-        // Uncomment the timeout block below to enable quality gate checks
-        // timeout(time: 5, unit: 'MINUTES') {
-        //   waitForQualityGate abortPipeline: false
-        // }
-      }
-    }
 
     stage('Docker build & push to ECR') {
       steps {
@@ -125,14 +53,8 @@ pipeline {
             // Build the image from the root (adjust Dockerfile path if needed)
             def repo = "${params.AWS_ACCOUNT_ID}.dkr.ecr.${params.AWS_REGION}.amazonaws.com/${repoName}"
             sh 'ls -la'
-            sh 'cd Expense/expense-ci-cd/backend/'
-            sh 'ls -la'
-            sh "cd Expense/expense-ci-cd/backend; docker build -t ${repo}:${appVersion} ."
-            sh "docker tag ${repo}:${appVersion} ${repo}:latest"
-            sh "docker push ${repo}:${appVersion}"
+            sh "cd Expense/expense-ci-cd/mysql; ls -la; docker build -t ${repo}:latest ."
             sh "docker push ${repo}:latest"
-            sh "cd Expense/expense-ci-cd/mysql; docker build -t ${repo}:${appVersion} ."
-
           }
         }
       }
